@@ -67,7 +67,7 @@ const Badges = () => {
         <div className='Badges__hero'>
           <div className='Badges__container inline'>
             <img className='Badges_conf-logo inline' src={geekLogo} height='80px' alt='Conf Logo' />
-            <h3 className='inline text-light'>Geek API</h3>
+            <h3 className='inline text-light'>Card MarketPlace</h3>
           </div>
         </div>
       </div>

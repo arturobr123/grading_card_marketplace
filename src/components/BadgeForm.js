@@ -1,68 +1,49 @@
 import React from 'react';
 
+import { optionStatuses, optionsTypes } from '../actions/index' ;
+
 class BadgeForm extends React.Component {
 
   render() {
-    const options_types = [
-      {id: 1, name: "All"},
-      {id: 2, name: "Game of Thrones"},
-      {id: 3, name: "Marvel"},
-      {id: 4, name: "Super Smash Bros"}
-     ];
-
-     const options_statuses = [
-       {id: 1, name: "Alive"},
-       {id: 2, name: "Dead"},
-       {id: 3, name: "Unknown"}
-      ];
-
     return (
       <div>
         <form onSubmit={this.props.onSubmit}>
 
-          <div className="row">
-            <div className="form-group col-6">
-              <label>First Name</label>
-              <input required
-                onChange={this.props.onChange}
-                className="form-control"
-                type="text"
-                name="firstName"
-                value={this.props.formValues.firstName}
-              />
-            </div>
-
-            <div className="form-group col-6">
-              <label>Last Name</label>
+          <div className='row'>
+            <div className='form-group col-6'>
+              <label>Card Name</label>
               <input
+                required
                 onChange={this.props.onChange}
-                className="form-control"
-                type="text"
-                name="lastName"
-                value={this.props.formValues.lastName}
+                className='form-control'
+                type='text'
+                name='cardName'
+                value={this.props.formValues.cardName}
               />
             </div>
           </div>
 
-          <div className="form-group">
-            <label>Job Title</label>
+          <div className='form-group'>
+            <label>Saga</label>
             <input
               onChange={this.props.onChange}
-              className="form-control"
-              type="text"
-              name="jobTitle"
-              value={this.props.formValues.jobTitle}
+              className='form-control'
+              type='text'
+              name='saga'
+              value={this.props.formValues.saga}
             />
           </div>
 
-          <div className="form-group">
-            <label>{"Where is this Character from ?"}</label>
+          <div className='form-group'>
+            <label>Type? Rare? Secret rare?</label>
 
-            <select name="type"
+            <select
+              name='type'
               onChange={this.props.onChange}
               value={this.props.formValues.type}
-              className="form-control">
-              {options_types.map(option => {
+              className='form-control'
+            >
+              {optionsTypes.map((option) => {
                 return (
                   <option key={option.id}>{option.name}</option>
                 );
@@ -70,25 +51,16 @@ class BadgeForm extends React.Component {
             </select>
           </div>
 
-          <div className="form-group">
-            <label>Last location</label>
-            <input
-              onChange={this.props.onChange}
-              className="form-control"
-              type="text"
-              name="lastLocation"
-              value={this.props.formValues.lastLocation}
-            />
-          </div>
+          <div className='form-group'>
+            <label>Status</label>
 
-          <div className="form-group">
-            <label>{"Status"}</label>
-
-            <select name="status"
+            <select
+              name='status'
               onChange={this.props.onChange}
               value={this.props.formValues.status}
-              className="form-control">
-              {options_statuses.map(option => {
+              className='form-control'
+            >
+              {optionStatuses.map((option) => {
                 return (
                   <option key={option.id}>{option.name}</option>
                 );
@@ -97,18 +69,18 @@ class BadgeForm extends React.Component {
           </div>
 
           <input
-            type="file"
-            name="avatarURL"
-            accept="image/*"
+            type='file'
+            name='avatarURL'
+            accept='image/*'
             onChange={this.props.onChangeImage}
           />
 
-          <button className="btn btn-primary">
+          <button className='btn btn-primary'>
             Save
           </button>
 
           {this.props.error && (
-            <p className="text-danger">{this.props.error.message}</p>
+            <p className='text-danger'>{this.props.error.message}</p>
           )}
         </form>
       </div>

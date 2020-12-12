@@ -6,37 +6,28 @@ import Gravatar from './Gravatar';
 
 class Badge extends React.Component {
   render() {
+    const { avatarURL, cardName, saga, type, status } = this.props;
     return (
       <div className='Badge'>
 
         <div className='Badge__section-name'>
-          <Gravatar className='Badge__avatar' avatarURL={this.props.avatarURL} />
+          <Gravatar className='Badge__avatar' avatarURL={avatarURL} />
           <h1>
-            {this.props.firstName}
-            {' '}
-            <br />
-            {' '}
-            {this.props.lastName}
+            {cardName}
           </h1>
         </div>
 
         <div className='Badge__section-info'>
-          <h3>{this.props.jobTitle}</h3>
+          <h3>{saga}</h3>
           <div>
-            From:
+            Type:
             {' '}
-            {this.props.type}
+            {type}
           </div>
           <div>
             Status:
             {' '}
-            <strong>{this.props.status}</strong>
-            {' '}
-          </div>
-          <div>
-            Last location:
-            {' '}
-            {this.props.lastLocation}
+            <strong>{status}</strong>
             {' '}
           </div>
         </div>

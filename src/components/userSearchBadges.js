@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 function UserSearchBadges(badges) {
   const [query, setQuery] = useState('');
@@ -7,18 +7,20 @@ function UserSearchBadges(badges) {
 
   //useMemo es para memorizar los resultados del query
   React.useMemo(() => {
-    const result = badges.filter(badge => {
+    const result = badges.filter((badge) => {
       let isType = true;
 
-      //el tipo de personaje
-      if(type.length > 0 && type != "All"){
-        isType = `${badge.type}`.includes(type);
+      //el status de la carta
+      console.log(type);
+      if (type.length > 0 && type !== 'All') {
+        //isType = `${badge.type}`.includes(type);
+        isType = badge.type === type;
       }
 
       //si el nombre es igual a la busqueda
-      let isQuery = `${badge.firstName} ${badge.lastName}`
-       .toLowerCase()
-       .includes(query.toLowerCase());
+      const isQuery = `${badge.cardName}`
+        .toLowerCase()
+        .includes(query.toLowerCase());
 
       return (isQuery && isType); //checan que los 2 sean true
     });
@@ -26,7 +28,7 @@ function UserSearchBadges(badges) {
     setFilteredBadges(result);
   }, [badges, query + type]);
 
-  return { query, setQuery,type, setType,filteredBadges };
+  return { query, setQuery, type, setType, filteredBadges };
 }
 
 export default UserSearchBadges;

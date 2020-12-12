@@ -1,39 +1,36 @@
 import React from 'react';
 
+import { optionsTypes } from '../actions/index' ;
+
 function Searcher(props) {
 
-  const options = [
-    {id: 1, name: "All"},
-    {id: 2, name: "Game of Thrones"},
-    {id: 3, name: "Marvel"},
-    {id: 4, name: "Super Smash Bros"}
-   ];
-
-  return(
-    <div className="row">
-      <div className="form-group col-12">
+  return (
+    <div className='row'>
+      <div className='form-group col-12'>
         <label>Filter by name</label>
         <input
-          type="text"
-          className="form-control"
+          type='text'
+          className='form-control'
           value={props.query}
-          onChange={e => {
+          onChange={(e) => {
             props.setQuery(e.target.value);
           }}
         />
       </div>
 
-      <div className="form-group col-12">
-        <label>{"Where are the Characters from ?"}</label>
+      <div className='form-group col-12'>
+        <label> What is the type of card?</label>
 
-        <select name="twitter"
-          className="form-control"
-          id="typeSelector"
+        <select
+          name='twitter'
+          className='form-control'
+          id='typeSelector'
           value={props.type}
-          onChange={e => {
+          onChange={(e) => {
             props.setType(e.target.value);
-          }}>
-          {options.map(option => {
+          }}
+        >
+          {optionsTypes.map((option) => {
             return (
               <option key={option.id}>{option.name}</option>
             );

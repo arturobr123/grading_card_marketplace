@@ -35,8 +35,8 @@ class Navbar extends React.Component {
 
           <Link className='Navbar__brand' to='/badges'>
             <img className='Navbar__brand-logo' src={geekLogo} height='40px' alt='Logo' />
-            <span className='font-weight-light'>Geek </span>
-            <span className='font-weight-bold'>API</span>
+            <span className='font-weight-light'> Card </span>
+            <span className='font-weight-bold'>MarketPlace</span>
           </Link>
         </div>
       </div>

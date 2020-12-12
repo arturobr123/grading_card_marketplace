@@ -1,18 +1,18 @@
 import firebase, { auth, provider } from '../firebaseInitializeApp.js';
 
-export function getUser(){
+export function getUser() {
   auth.onAuthStateChanged((user) => {
     if (user) {
       this.setState({
-        user
+        user,
       });
 
-      console.log(this.state.user)
+      console.log(this.state.user);
     }
   });
 }
 
-export function setUserToForm(){
+export function setUserToForm() {
   auth.onAuthStateChanged((user) => {
     if (user) {
       this.setState({
@@ -25,23 +25,23 @@ export function setUserToForm(){
   });
 }
 
-export function logout(){
+export function logout() {
   auth.signOut()
     .then(() => {
       this.setState({
-        user: null
+        user: null,
       });
 
       window.location = '/';
     });
 }
 
-export function login(){
+export function login() {
   auth.signInWithPopup(provider)
     .then((result) => {
-      const user = result.user;
+      const {user} = result;
       this.setState({
-        user
+        user,
       });
 
       this.props.history.push('/badges');
