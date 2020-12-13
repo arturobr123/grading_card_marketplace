@@ -1,24 +1,21 @@
 import React from 'react';
 import './styles/BadgesList.css';
 
+import { Card, Button } from 'react-bootstrap';
+
 class BadgesListItem extends React.Component {
   render() {
     const { badge } = this.props;
     return (
-      <div className='CharacterCard' style={{ backgroundImage: `url(${badge.avatarURL})` }}>
-        <div className='CharacterCard__name-container text-truncate'>
-          <p>
-            <strong>
-              {badge.cardName}
-            </strong>
-          </p>
-          <p>
-            Saga:
-            {' '}
+      <Card>
+        <Card.Img style={{ height: '24rem' }} variant='top' src={badge.avatarURL} />
+        <Card.Body>
+          <Card.Title>{badge.cardName}</Card.Title>
+          <Card.Text>
             {badge.saga}
-          </p>
-        </div>
-      </div>
+          </Card.Text>
+        </Card.Body>
+      </Card>
     );
   }
 }
