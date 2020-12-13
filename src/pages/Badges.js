@@ -75,7 +75,7 @@ const Badges = () => {
       <div className='Badges__container'>
         <div className='Badges__buttons'>
           <Link to='/badges/new' className='btn btn-primary'>
-            New Character
+            Add New Card
           </Link>
         </div>
 

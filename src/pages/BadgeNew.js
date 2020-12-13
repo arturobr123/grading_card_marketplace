@@ -9,6 +9,7 @@ import api from '../api';
 import { db } from '../firebaseDB';
 import { badgeObject } from '../actions/index' ;
 import { handleChangeImage, handleChange, submitImage } from '../actions/BadgeActions';
+import { setUserToForm } from '../actions/userActions';
 
 class BadgeNew extends React.Component {
   state = {
@@ -24,6 +25,11 @@ class BadgeNew extends React.Component {
     this.submitImage = submitImage.bind(this);
     this.handleChangeImage = handleChangeImage.bind(this);
     this.handleChange = handleChange.bind(this);
+    this.setUserToForm = setUserToForm.bind(this);
+  }
+
+  componentDidMount() {
+    this.setUserToForm();
   }
 
   handleSubmit = async (e) => {

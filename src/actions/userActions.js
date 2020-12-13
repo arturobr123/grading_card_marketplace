@@ -25,6 +25,17 @@ export function setUserToForm() {
   });
 }
 
+export function setUserToState() {
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      this.setState({
+        ...this.state,
+        user_uid: user.uid,
+      });
+    }
+  });
+}
+
 export function logout() {
   auth.signOut()
     .then(() => {
@@ -39,7 +50,7 @@ export function logout() {
 export function login() {
   auth.signInWithPopup(provider)
     .then((result) => {
-      const {user} = result;
+      const { user } = result;
       this.setState({
         user,
       });
