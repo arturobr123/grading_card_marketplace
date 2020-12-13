@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './styles/BadgeEdit.css';
+import firebase from 'firebase';
 import header from '../images/platziconf-logo.svg';
 import Badge from '../components/Badge';
 import BadgeForm from '../components/BadgeForm';
@@ -39,14 +40,15 @@ class BadgeEdit extends React.Component {
   }
 
   fetchData = async (e) => {
+    const { params } = this.props.match;
     this.setState({ loading: true, error: null });
 
-    db.child(this.props.match.params.badgeId).once('value', (snapshot) => {
-      const values = snapshot.val();
+    db.collection('cards').doc(params.badgeId).onSnapshot((snapshot) => {
+      const values = snapshot.data();
 
       const data = {
         ...values,
-        id: this.props.match.params.badgeId,
+        id: params.badgeId,
       };
 
       this.setState({ loading: false, form: data, previewPhoto: data.avatarURL });
@@ -59,16 +61,19 @@ class BadgeEdit extends React.Component {
     e.preventDefault();
     this.setState({ loading: true, error: null });
 
+    const { form } = this.state;
+
     try {
       if (this.state.toUploadPhoto) {
         const imageUrl = await this.submitImage();
-        this.setState({ form: { ...this.state.form, avatarURL: imageUrl } });
+        this.setState({ form: { ...form, avatarURL: imageUrl, timestamp: firebase.firestore.FieldValue.serverTimestamp() } });
       }
 
-      db.child(this.props.match.params.badgeId).set(this.state.form);
-      this.setState({ loading: false });
+      db.collection('cards').doc(this.props.match.params.badgeId).update(form);
 
+      this.setState({ loading: false });
       this.props.history.push('/badges');
+
     } catch (error) {
       this.setState({ loading: false, error });
     }

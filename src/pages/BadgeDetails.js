@@ -8,48 +8,6 @@ import DeleteBadgeModal from '../components/DeleteBadgeModal';
 function BadgeDetails(props) {
   const { badge } = props;
 
-  const thereAreComments = !!badge.scores;
-
-  let scores = badge.scores ? badge.scores : [{ score: 5 }];
-
-  scores = Object.keys(scores).map(key => ({
-    ...scores[key],
-    id: key,
-  }));
-
-  const average = (scores.map(badge => badge.score).reduce((a, b) => parseInt(a) + parseInt(b)) / scores.length).toFixed(2);
-
-  const comments = () => {
-    console.log(badge.scores);
-
-    return (
-      scores.map((badge) => {
-        return (
-          <div className='card mt-1' key={badge.id}>
-            <div className='card-body'>
-              <p>
-                Comment:
-                {' '}
-                {badge.comment}
-              </p>
-              <p>
-                Score:
-                {' '}
-                {badge.score}
-              </p>
-              <p>
-                User uid:
-                {' '}
-                {badge.user_uid}
-              </p>
-            </div>
-          </div>
-
-        );
-      })
-    );
-  };
-
   return (
     <div>
       <div className='BadgeDetails__hero'>
@@ -75,12 +33,6 @@ function BadgeDetails(props) {
               avatarURL={badge.avatarURL}
               status={badge.status}
             />
-
-            <h4>
-              Score average:
-              {' '}
-              {average}
-            </h4>
 
           </div>
           <div className='col'>
@@ -117,11 +69,6 @@ function BadgeDetails(props) {
             </div>
           </div>
 
-        </div>
-
-        <div>
-          <h3>Comments</h3>
-          {thereAreComments && comments()}
         </div>
 
       </div>

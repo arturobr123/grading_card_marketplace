@@ -1,10 +1,11 @@
 import React from 'react';
-
+import firebase from 'firebase';
 import './styles/BadgeNew.css';
 import header from '../images/platziconf-logo.svg';
 import Badge from '../components/Badge';
 import BadgeForm from '../components/BadgeForm';
 import PageLoading from '../components/PageLoading';
+
 import api from '../api';
 import { db } from '../firebaseDB';
 import { badgeObject } from '../actions/index' ;
@@ -38,9 +39,9 @@ class BadgeNew extends React.Component {
 
     try {
       const imageUrl = await this.submitImage();
-      this.setState({ form: { ...this.state.form, avatarURL: imageUrl } });
+      this.setState({ form: { ...this.state.form, avatarURL: imageUrl, timestamp: firebase.firestore.FieldValue.serverTimestamp() } });
 
-      db.push(this.state.form);
+      db.collection('cards').add(this.state.form);
 
       this.setState({ loading: false });
       this.props.history.push('/badges');
@@ -72,7 +73,7 @@ class BadgeNew extends React.Component {
             </div>
 
             <div className='col-md-6 col-sm-12'>
-              <h1>New Character</h1>
+              <h1>New Card</h1>
               <BadgeForm
                 onChange={this.handleChange}
                 onChangeImage={this.handleChangeImage}

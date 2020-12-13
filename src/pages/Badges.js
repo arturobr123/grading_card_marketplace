@@ -22,21 +22,19 @@ const Badges = () => {
     setLoading(true);
     setError(null);
 
-    db.on('value', (snapshot) => {
-      const values = snapshot.val();
-
-      const charactersList = Object.keys(values).map(key => ({
-        ...values[key],
-        id: key,
-      }));
-
-      setLoading(false);
-      setData(charactersList);
-
-    }, (error) => {
-      setLoading(false);
-      setError(null);
-    });
+    db.collection('cards')
+      .orderBy('timestamp', 'asc')
+      .onSnapshot((snapshot) => {
+        setData(snapshot.docs.map(doc => ({
+          ...doc.data(),
+          id: doc.id,
+        })));
+        setLoading(false);
+      }, (error) => {
+        console.log(error);
+        setLoading(false);
+        setError(null);
+      });
   };
 
   const checkUser = () => {
