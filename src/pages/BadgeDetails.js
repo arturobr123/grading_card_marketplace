@@ -32,6 +32,9 @@ function BadgeDetails(props) {
               type={badge.type}
               avatarURL={badge.avatarURL}
               status={badge.status}
+              gradeCompany={badge.gradeCompany}
+              grade={badge.grade}
+              price={badge.price}
             />
 
           </div>

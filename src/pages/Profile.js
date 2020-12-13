@@ -25,7 +25,10 @@ const Profile = () => {
 
     db.collection('cards').where('user_uid', '==', user.uid).get()
       .then((querySnapshot) => {
-        const data = querySnapshot.docs.map(doc => doc.data());
+        const data = querySnapshot.docs.map(doc => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
         setData(data);
         setLoading(false);
       }, (error) => {

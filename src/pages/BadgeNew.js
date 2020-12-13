@@ -69,6 +69,9 @@ class BadgeNew extends React.Component {
                 type={this.state.form.type || 'TYPE'}
                 avatarURL={this.state.previewPhoto || 'https://www.gravatar.com/avatar/21594ed15d68ace396564e84?d=identicon'}
                 status={this.state.form.status || 'STATUS'}
+                gradeCompany={this.state.form.gradeCompany || 'GRADE_COMPANY'}
+                grade={this.state.form.grade || 'GRADE'}
+                price={this.state.form.price || 'PRICE'}
               />
             </div>
 

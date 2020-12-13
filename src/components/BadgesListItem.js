@@ -12,6 +12,24 @@ class BadgesListItem extends React.Component {
         <Card.Body>
           <Card.Title>{badge.cardName}</Card.Title>
           <Card.Text>
+            <p>
+              <b>Grade Company:</b>
+              {' '}
+              {badge.gradeCompany}
+            </p>
+            <p>
+              <b>Grade:</b>
+              {badge.grade}
+            </p>
+            <p>
+              Price:
+              {' '}
+              $
+              {badge.price}
+            </p>
+
+            Info:
+            {' '}
             {badge.saga}
           </Card.Text>
         </Card.Body>

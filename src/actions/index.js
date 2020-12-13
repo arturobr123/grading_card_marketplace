@@ -26,7 +26,16 @@ export const badgeObject = {
   type: '',
   avatarURL: '',
   status: 'To Sell',
+  gradeCompany: 'PSA',
+  price: 0,
+  grade: 10,
 };
+
+export const optionGradeCompany = [
+  { id: 1, name: 'PSA' },
+  { id: 2, name: 'BGS' },
+  { id: 3, name: 'CGC' },
+];
 
 export const optionStatuses = [
   { id: 1, name: 'To Sell' },

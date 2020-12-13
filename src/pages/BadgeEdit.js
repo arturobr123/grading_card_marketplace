@@ -8,21 +8,14 @@ import BadgeForm from '../components/BadgeForm';
 import PageLoading from '../components/PageLoading';
 import api from '../api';
 import { db } from '../firebaseDB';
+import { badgeObject } from '../actions/index' ;
 import { handleChange, handleChangeImage, submitImage } from '../actions/BadgeActions';
 
 class BadgeEdit extends React.Component {
   state = {
     loading: true,
     error: null,
-    form: {
-      firstName: '',
-      lastName: '',
-      jobTitle: '',
-      type: '',
-      avatarURL: '',
-      status: '',
-      lastLocation: '',
-    },
+    form: badgeObject,
     previewPhoto: '',
     toUploadPhoto: '',
   };
@@ -92,18 +85,19 @@ class BadgeEdit extends React.Component {
           <div className='row'>
             <div className='col-md-6 col-sm-12'>
               <Badge
-                firstName={this.state.form.firstName || 'FIRST_NAME'}
-                lastName={this.state.form.lastName || 'LAST_NAME'}
-                jobTitle={this.state.form.jobTitle || 'JOB_TITLE'}
+                cardName={this.state.form.cardName || 'CARD_NAME'}
+                saga={this.state.form.saga || 'SAGA'}
                 type={this.state.form.type || 'TYPE'}
                 avatarURL={this.state.previewPhoto || 'https://www.gravatar.com/avatar/21594ed15d68ace396564e84?d=identicon'}
                 status={this.state.form.status || 'STATUS'}
-                lastLocation={this.state.form.lastLocation || 'LAST_LOCATION'}
+                gradeCompany={this.state.form.gradeCompany || 'GRADE_COMPANY'}
+                grade={this.state.form.grade || 'GRADE'}
+                price={this.state.form.price || 'PRICE'}
               />
             </div>
 
             <div className='col-md-6 col-sm-12'>
-              <h1>Edit Character</h1>
+              <h1>Edit Card</h1>
               <BadgeForm
                 onChange={this.handleChange}
                 onSubmit={this.handleSubmit}

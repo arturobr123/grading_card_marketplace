@@ -6,7 +6,7 @@ import Gravatar from './Gravatar';
 
 class Badge extends React.Component {
   render() {
-    const { avatarURL, cardName, saga, type, status } = this.props;
+    const { avatarURL, cardName, saga, type, status, gradeCompany, grade, price } = this.props;
     return (
       <div className='Badge'>
 
@@ -29,6 +29,24 @@ class Badge extends React.Component {
             {' '}
             <strong>{status}</strong>
             {' '}
+          </div>
+
+          <div>
+            Grade Company:
+            {' '}
+            <strong>{gradeCompany}</strong>
+          </div>
+
+          <div>
+            Grade:
+            {' '}
+            <strong>{grade}</strong>
+          </div>
+
+          <div>
+            Price:
+            {' '}
+            <strong>{price}</strong>
           </div>
         </div>
       </div>
