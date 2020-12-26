@@ -1,7 +1,6 @@
 import React from 'react';
 
 import './styles/Badge.css';
-import geekLogo from '../images/geek_icon.png';
 import Gravatar from './Gravatar';
 
 class Badge extends React.Component {

@@ -3,12 +3,12 @@ import React from 'react';
 import Navbar from './Navbar';
 
 function Layout(props) {
-  // const children = props.children;
+  const { children } = props;
 
   return (
     <React.Fragment>
       <Navbar />
-      {props.children}
+      {children}
     </React.Fragment>
   );
 }

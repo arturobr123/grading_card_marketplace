@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles/BadgesList.css';
 
-import { Card, Button } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
 class BadgesListItem extends React.Component {
   render() {

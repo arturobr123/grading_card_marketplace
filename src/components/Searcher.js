@@ -1,8 +1,12 @@
+/* eslint-disable jsx-a11y/label-has-for */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 
 import { optionsTypes } from '../actions/index' ;
 
 function Searcher(props) {
+
+  const { query, type, setType, setQuery } = props;
 
   return (
     <div className='row'>
@@ -11,9 +15,9 @@ function Searcher(props) {
         <input
           type='text'
           className='form-control'
-          value={props.query}
+          value={query}
           onChange={(e) => {
-            props.setQuery(e.target.value);
+            setQuery(e.target.value);
           }}
         />
       </div>
@@ -25,9 +29,9 @@ function Searcher(props) {
           name='twitter'
           className='form-control'
           id='typeSelector'
-          value={props.type}
+          value={type}
           onChange={(e) => {
-            props.setType(e.target.value);
+            setType(e.target.value);
           }}
         >
           {optionsTypes.map((option) => {

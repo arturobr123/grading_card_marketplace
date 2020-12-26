@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Gravatar from './Gravatar';
 import UserSearchBadges from './userSearchBadges';
 import BadgesListItem from './BadgesListItem';
 import Searcher from './Searcher';

@@ -5,7 +5,7 @@ import Loader from './Loader';
 
 function PageLoading() {
   return (
-    <div className="PageLoading">
+    <div className='PageLoading'>
       <Loader />
     </div>
   );

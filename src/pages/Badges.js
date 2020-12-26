@@ -7,9 +7,7 @@ import BadgesList from '../components/BadgesList';
 import PageLoading from '../components/PageLoading';
 import PageError from '../components/PageError';
 import MiniLoader from '../components/MiniLoader';
-import { fetchCharacters } from '../actions';
-
-import { auth } from '../firebaseInitializeApp.js';
+import { auth } from '../firebaseInitializeApp';
 
 import { db } from '../firebaseDB';
 

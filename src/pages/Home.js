@@ -1,8 +1,8 @@
+/* eslint-disable react/button-has-type */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import './styles/Home.css';
-import platziconfLogoImage from '../images/platziconf-logo.svg';
 import geekLogo from '../images/geek_icon.png';
 
 import { login, logout } from '../actions/userActions';
@@ -19,6 +19,8 @@ export default class Home extends Component {
   }
 
   render() {
+    const { user } = this.state;
+
     return (
       <div className='Home'>
         <div className='container'>
@@ -31,7 +33,7 @@ export default class Home extends Component {
                 Start
               </Link>
 
-              {this.state.user ?
+              {user ?
                 <button onClick={this.logout}>Log Out</button> :
                 <button onClick={this.login}>Log In</button>
               }

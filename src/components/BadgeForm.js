@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable jsx-a11y/label-has-for */
+/* eslint-disable react/button-has-type */
 import React from 'react';
 
 import { optionStatuses, optionsTypes, optionGradeCompany } from '../actions/index' ;
@@ -5,20 +8,22 @@ import { optionStatuses, optionsTypes, optionGradeCompany } from '../actions/ind
 class BadgeForm extends React.Component {
 
   render() {
+    const { onSubmit, onChange, formValues, error, onChangeImage } = this.props;
+
     return (
       <div>
-        <form onSubmit={this.props.onSubmit}>
+        <form onSubmit={onSubmit}>
 
           <div className='row'>
             <div className='form-group col-6'>
               <label>Card Name</label>
               <input
                 required
-                onChange={this.props.onChange}
+                onChange={onChange}
                 className='form-control'
                 type='text'
                 name='cardName'
-                value={this.props.formValues.cardName}
+                value={formValues.cardName}
               />
             </div>
           </div>
@@ -26,11 +31,11 @@ class BadgeForm extends React.Component {
           <div className='form-group'>
             <label>Saga</label>
             <input
-              onChange={this.props.onChange}
+              onChange={onChange}
               className='form-control'
               type='text'
               name='saga'
-              value={this.props.formValues.saga}
+              value={formValues.saga}
             />
           </div>
 
@@ -39,8 +44,8 @@ class BadgeForm extends React.Component {
 
             <select
               name='type'
-              onChange={this.props.onChange}
-              value={this.props.formValues.type}
+              onChange={onChange}
+              value={formValues.type}
               className='form-control'
             >
               {optionsTypes.map((option) => {
@@ -56,8 +61,8 @@ class BadgeForm extends React.Component {
               <label>Grade Company</label>
               <select
                 name='gradeCompany'
-                onChange={this.props.onChange}
-                value={this.props.formValues.gradeCompany}
+                onChange={onChange}
+                value={formValues.gradeCompany}
                 className='form-control'
               >
                 {optionGradeCompany.map((option) => {
@@ -71,11 +76,11 @@ class BadgeForm extends React.Component {
             <div className='form-group col-6'>
               <label>Grade</label>
               <input
-                onChange={this.props.onChange}
+                onChange={onChange}
                 className='form-control'
                 type='number'
                 name='grade'
-                value={this.props.formValues.grade}
+                value={formValues.grade}
               />
             </div>
           </div>
@@ -83,11 +88,11 @@ class BadgeForm extends React.Component {
           <div className='form-group'>
             <label>Price</label>
             <input
-              onChange={this.props.onChange}
+              onChange={onChange}
               className='form-control'
               type='number'
               name='price'
-              value={this.props.formValues.price}
+              value={formValues.price}
             />
           </div>
 
@@ -96,8 +101,8 @@ class BadgeForm extends React.Component {
 
             <select
               name='status'
-              onChange={this.props.onChange}
-              value={this.props.formValues.status}
+              onChange={onChange}
+              value={formValues.status}
               className='form-control'
             >
               {optionStatuses.map((option) => {
@@ -112,15 +117,15 @@ class BadgeForm extends React.Component {
             type='file'
             name='avatarURL'
             accept='image/*'
-            onChange={this.props.onChangeImage}
+            onChange={onChangeImage}
           />
 
           <button className='btn btn-primary'>
             Save
           </button>
 
-          {this.props.error && (
-            <p className='text-danger'>{this.props.error.message}</p>
+          {error && (
+            <p className='text-danger'>{error.message}</p>
           )}
         </form>
 

@@ -3,7 +3,7 @@ import React from 'react';
 import BadgeDetails from './BadgeDetails';
 import PageLoading from '../components/PageLoading';
 import PageError from '../components/PageError';
-import api from '../api';
+//import api from '../api';
 import { db } from '../firebaseDB';
 
 class BadgeDetailsContainer extends React.Component {
@@ -58,21 +58,23 @@ class BadgeDetailsContainer extends React.Component {
   };
 
   render() {
-    if (this.state.loading) {
+    const { data, loading, error, modalIsOpen } = this.state;
+
+    if (loading) {
       return <PageLoading />;
     }
 
-    if (this.state.error) {
-      return <PageError error={this.state.error} />;
+    if (error) {
+      return <PageError error={error} />;
     }
 
     return (
       <BadgeDetails
         onCloseModal={this.handleCloseModal}
         onOpenModal={this.handleOpenModal}
-        modalIsOpen={this.state.modalIsOpen}
+        modalIsOpen={modalIsOpen}
         onDeleteBadge={this.handleDeleteBadge}
-        badge={this.state.data}
+        badge={data}
       />
     );
   }
