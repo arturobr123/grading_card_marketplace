@@ -1,5 +1,6 @@
 import React from 'react';
-import './styles/BadgesList.css';
+
+import { Link } from 'react-router-dom';
 
 import { Card } from 'react-bootstrap';
 
@@ -7,33 +8,48 @@ class BadgesListItem extends React.Component {
   render() {
     const { badge } = this.props;
     return (
-      <Card>
-        <Card.Img style={{ height: '24rem' }} variant='top' src={badge.avatarURL} />
-        <Card.Body>
-          <Card.Title>{badge.cardName}</Card.Title>
-          <Card.Text>
-            <p>
-              <b>Grade Company:</b>
-              {' '}
-              {badge.gradeCompany}
-            </p>
-            <p>
-              <b>Grade:</b>
-              {badge.grade}
-            </p>
-            <p>
-              Price:
-              {' '}
-              $
-              {badge.price}
-            </p>
-
-            Info:
+      <div className='all-isotope-item col-md-3 col-sm-12'>
+        <div className='thumb'>
+          <a className='gallery-fancybox' href='#'>
+            <img style={{ height: '24rem' }} variant='top' src={badge.avatarURL} alt='image' />
+          </a>
+          <a className='btn btn-white' href='#'>Live Preview</a>
+        </div>
+        <div className='item-details'>
+          <span className='price'>
+            $
+            {badge.price}
+          </span>
+          <span className='ratting float-right'>
+            <i className='fa fa-star' />
+            <i className='fa fa-star' />
+            <i className='fa fa-star' />
+            <i className='fa fa-star' />
+            <i className='fa fa-star star-o' />
+            <span>(12)</span>
+          </span>
+          <h4><Link to={`/badges/${badge.id}`}>{badge.cardName}</Link></h4>
+          <p>
+            <b>Grade Company:</b>
             {' '}
-            {badge.saga}
-          </Card.Text>
-        </Card.Body>
-      </Card>
+            {badge.gradeCompany}
+          </p>
+          <p>
+            <b>Grade:</b>
+            {badge.grade}
+          </p>
+          <p>
+            Price:
+            {' '}
+            $
+            {badge.price}
+          </p>
+
+          Info:
+          {' '}
+          {badge.saga}
+        </div>
+      </div>
     );
   }
 }

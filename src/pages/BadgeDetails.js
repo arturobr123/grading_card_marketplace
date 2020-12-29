@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import './styles/BadgeDetails.css';
 import Badge from '../components/Badge';
+import PageHeader from '../components/pageHeader';
 import DeleteBadgeModal from '../components/DeleteBadgeModal';
 
 function BadgeDetails(props) {
@@ -11,20 +12,10 @@ function BadgeDetails(props) {
 
   console.log(badge);
 
+
   return (
     <div>
-      <div className='BadgeDetails__hero'>
-        <div className='container'>
-          <div className='row'>
-            <div className='col-6' />
-            <div className='col-6 BadgeDetails__hero-attendant-name'>
-              <h1>
-                {badge.cardName}
-              </h1>
-            </div>
-          </div>
-        </div>
-      </div>
+      <PageHeader headertitle='Products Details' subheader='pages' />
 
       <div className='container'>
         <div className='row'>

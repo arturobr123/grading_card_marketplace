@@ -13,34 +13,53 @@ function BadgesList(props) {
       <div>
         <Searcher query={query} setQuery={setQuery} type={type} setType={setType} />
 
-        <h3>No characters were found, may be you can help us creating the character than you were serching</h3>
+        <h3>No cards were found, may be you can help us creating the card than you were serching</h3>
         <Link className='btn btn-primary' to='/badges/new'>
-          Create new character
+          Create new card
         </Link>
       </div>
     );
   }
 
   return (
-    <div className='BadgesList'>
+    <div>
 
       <Searcher query={query} setQuery={setQuery} type={type} setType={setType} />
 
-      <ul className='list-unstyled row'>
-        {filteredBadges.map((badge) => {
-          return (
-            <li key={badge.id} className='col-md-3 col-sm-12'>
-              <Link
-                className='text-reset text-decoration-none'
-                to={`/badges/${badge.id}`}
-              >
-                <BadgesListItem badge={badge} />
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
-
+      <section className='all-item-area pd-bottom-100'>
+        <div className=''>
+          <div className='row'>
+            <div className='col-lg-4'>
+              <div className='section-title'>
+                <h2>All Items</h2>
+              </div>
+            </div>
+            <div className='col-lg-8 mt-2'>
+              <div className='isotope-filters item-isotope-btn text-lg-right'>
+                <button className='button active ml-0' data-filter='*'>All Items</button>
+                <button className='button' data-filter='.cat-1'>Secret Rare</button>
+                <button className='button' data-filter='.cat-2'>Ultra Rare</button>
+                <button className='button' data-filter='.cat-3'>Rainbow Rare</button>
+              </div>
+            </div>
+          </div>
+          <div className='all-item-section'>
+            <div className='item-isotope row'>
+              {/* gallery item start here */}
+              {filteredBadges.map((badge) => {
+                return (
+                  <BadgesListItem badge={badge} />
+                );
+              })}
+            </div>
+          </div>
+          <div className='row'>
+            <div className='col-lg-12 text-center'>
+              <Link className='btn btn-base' to='/product'>More Products</Link>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

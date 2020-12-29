@@ -9,6 +9,8 @@ import MiniLoader from '../components/MiniLoader';
 
 import { auth } from '../firebaseInitializeApp';
 
+import { logoutFunctionalComponent } from '../actions/userActions';
+
 import { db } from '../firebaseDB';
 
 const Profile = () => {
@@ -71,6 +73,10 @@ const Profile = () => {
             {user.displayName}
           </div>
           <Gravatar className='Badge__avatar' avatarURL={user?.photoURL} />
+          {user ?
+            // eslint-disable-next-line react/button-has-type
+            <button onClick={logoutFunctionalComponent}>Log Out</button> : ''
+          }
         </div>
       </div>
 

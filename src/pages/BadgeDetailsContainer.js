@@ -1,8 +1,9 @@
 import React from 'react';
 
-import BadgeDetails from './BadgeDetails';
+import ProductDetails from '../components/ProductDetails';
 import PageLoading from '../components/PageLoading';
 import PageError from '../components/PageError';
+import PageHeader from '../components/pageHeader';
 //import api from '../api';
 import { db } from '../firebaseDB';
 
@@ -34,6 +35,19 @@ class BadgeDetailsContainer extends React.Component {
     }, (error) => {
       this.setState({ loading: false, error });
     });
+
+    //COMMENTS
+    db.collection('cards').doc(params.badgeId).collection('comments').orderBy('timestamp', 'asc')
+      .onSnapshot((snapshot) => {
+        const values = snapshot.docs.map(doc => ({
+          ...doc.data(),
+        }));
+
+        this.setState({ data: { ...this.state.data, comments: values } });
+      }, (error) => {
+        this.setState({ loading: false, error });
+      });
+
   };
 
   handleOpenModal = (e) => {
@@ -69,13 +83,17 @@ class BadgeDetailsContainer extends React.Component {
     }
 
     return (
-      <BadgeDetails
-        onCloseModal={this.handleCloseModal}
-        onOpenModal={this.handleOpenModal}
-        modalIsOpen={modalIsOpen}
-        onDeleteBadge={this.handleDeleteBadge}
-        badge={data}
-      />
+      <div>
+        <PageHeader headertitle='Products Details' subheader='pages' />
+        <ProductDetails
+          onCloseModal={this.handleCloseModal}
+          onOpenModal={this.handleOpenModal}
+          modalIsOpen={modalIsOpen}
+          onDeleteBadge={this.handleDeleteBadge}
+          badge={data}
+        />
+      </div>
+
     );
   }
 }

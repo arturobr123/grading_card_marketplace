@@ -11,9 +11,9 @@ class NewScore extends React.Component {
     loading: false,
     error: null,
     form: {
-      score: 5,
       comment: '',
       user_uid: 'invited',
+      user_name: 'UserName',
     },
   };
 
@@ -33,13 +33,17 @@ class NewScore extends React.Component {
     this.setState({ loading: true, error: null });
 
     try {
-      db.child(this.props.match.params.badgeId).child('scores').push(this.state.form);
+      console.log(this.props.match.params.badgeId);
+      db.collection('cards').doc(this.props.match.params.badgeId).collection('comments').add(this.state.form);
 
       this.setState({ loading: false });
       this.props.history.push(`/badges/${this.props.match.params.badgeId}`);
 
     } catch (error) {
+      console.log(error);
       this.setState({ loading: false, error });
+
+      console.log(this.state.error);
     }
   };
 
@@ -62,18 +66,6 @@ class NewScore extends React.Component {
 
                 <div className='row'>
                   <div className='form-group col-6'>
-                    <label>Score</label>
-                    <input
-                      required
-                      onChange={this.handleChange}
-                      className='form-control'
-                      type='text'
-                      name='score'
-                      value={this.state.form.score}
-                    />
-                  </div>
-
-                  <div className='form-group col-6'>
                     <label>Comment</label>
                     <input
                       onChange={this.handleChange}
@@ -89,8 +81,8 @@ class NewScore extends React.Component {
                   Save
                 </button>
 
-                {this.props.error && (
-                  <p className='text-danger'>{this.state.error.message}</p>
+                {this.state.error && (
+                  <p className=''>{this.state.error.message}</p>
                 )}
               </form>
 

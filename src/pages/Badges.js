@@ -7,6 +7,7 @@ import BadgesList from '../components/BadgesList';
 import PageLoading from '../components/PageLoading';
 import PageError from '../components/PageError';
 import MiniLoader from '../components/MiniLoader';
+import Banner from '../components/banner';
 import { auth } from '../firebaseInitializeApp';
 
 import { db } from '../firebaseDB';
@@ -59,21 +60,9 @@ const Badges = () => {
 
   return (
     <Fragment>
-      <div className='Badges'>
-        <div className='Badges__hero'>
-          <div className='Badges__container inline'>
-            <img className='Badges_conf-logo inline' src={geekLogo} height='80px' alt='Conf Logo' />
-            <h3 className='inline text-light'>Card MarketPlace</h3>
-          </div>
-        </div>
-      </div>
+      <Banner />
 
       <div className='Badges__container'>
-        <div className='Badges__buttons'>
-          <Link to='/badges/new' className='btn btn-primary'>
-            Add New Card
-          </Link>
-        </div>
 
         <BadgesList badges={data} />
 

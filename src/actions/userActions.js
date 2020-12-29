@@ -19,6 +19,7 @@ export function setUserToForm() {
         form: {
           ...this.state.form,
           user_uid: user.uid,
+          user_name: user.displayName,
         },
       });
     }
@@ -43,6 +44,14 @@ export function logout() {
         user: null,
       });
 
+      window.location = '/';
+    });
+}
+
+//do not use setState in functional component
+export function logoutFunctionalComponent() {
+  auth.signOut()
+    .then(() => {
       window.location = '/';
     });
 }
