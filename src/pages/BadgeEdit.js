@@ -2,20 +2,19 @@ import React from 'react';
 
 import './styles/BadgeEdit.css';
 import firebase from 'firebase';
-import header from '../images/platziconf-logo.svg';
 import Badge from '../components/Badge';
 import BadgeForm from '../components/BadgeForm';
 import PageLoading from '../components/PageLoading';
 import api from '../api';
 import { db } from '../firebaseDB';
-import { badgeObject } from '../actions/index' ;
+import { cardObject } from '../actions/index' ;
 import { handleChange, handleChangeImage, submitImage } from '../actions/BadgeActions';
 
 class BadgeEdit extends React.Component {
   state = {
     loading: true,
     error: null,
-    form: badgeObject,
+    form: cardObject,
     previewPhoto: '',
     toUploadPhoto: '',
   };

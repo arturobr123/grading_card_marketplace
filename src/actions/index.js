@@ -20,7 +20,7 @@ export const fetchCharacters = () => async (dispatch) => {
 };
 
 //this is the object of each card
-export const badgeObject = {
+export const cardObject = {
   cardName: '',
   saga: '',
   type: '',

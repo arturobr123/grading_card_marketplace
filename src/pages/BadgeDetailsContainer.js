@@ -20,7 +20,8 @@ class BadgeDetailsContainer extends React.Component {
   }
 
   fetchData = async () => {
-    const { params } = this.props.match;
+    const { match } = this.props;
+    const { params } = match;
     this.setState({ loading: true, error: null });
 
     db.collection('cards').doc(params.badgeId).onSnapshot((snapshot) => {
@@ -36,14 +37,20 @@ class BadgeDetailsContainer extends React.Component {
       this.setState({ loading: false, error });
     });
 
-    //COMMENTS
+    //LOAD COMMENTS
     db.collection('cards').doc(params.badgeId).collection('comments').orderBy('timestamp', 'asc')
       .onSnapshot((snapshot) => {
         const values = snapshot.docs.map(doc => ({
           ...doc.data(),
         }));
 
-        this.setState({ data: { ...this.state.data, comments: values } });
+        this.setState(previousState => ({
+          ...previousState,
+          data: {
+            ...previousState.data,
+            comments: values,
+          },
+        }));
       }, (error) => {
         this.setState({ loading: false, error });
       });
@@ -61,11 +68,13 @@ class BadgeDetailsContainer extends React.Component {
   handleDeleteBadge = async (e) => {
     this.setState({ loading: true, error: null });
 
+    const { match, history } = this.props;
+
     try {
-      db.collection('cards').doc(this.props.match.params.badgeId).delete();
+      db.collection('cards').doc(match.params.badgeId).delete();
       this.setState({ loading: false });
 
-      this.props.history.push('/badges');
+      history.push('/badges');
     } catch (error) {
       this.setState({ loading: false, error });
     }

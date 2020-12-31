@@ -36,10 +36,10 @@ function BadgesList(props) {
             </div>
             <div className='col-lg-8 mt-2'>
               <div className='isotope-filters item-isotope-btn text-lg-right'>
-                <button className='button active ml-0' data-filter='*'>All Items</button>
-                <button className='button' data-filter='.cat-1'>Secret Rare</button>
-                <button className='button' data-filter='.cat-2'>Ultra Rare</button>
-                <button className='button' data-filter='.cat-3'>Rainbow Rare</button>
+                <button type='button' className='button active ml-0' data-filter='*'>All Items</button>
+                <button type='button' className='button' data-filter='.cat-1'>Secret Rare</button>
+                <button type='button' className='button' data-filter='.cat-2'>Ultra Rare</button>
+                <button type='button' className='button' data-filter='.cat-3'>Rainbow Rare</button>
               </div>
             </div>
           </div>

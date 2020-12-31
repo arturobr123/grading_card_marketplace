@@ -1,8 +1,5 @@
 import React from 'react';
-
 import { Link } from 'react-router-dom';
-
-import { Card } from 'react-bootstrap';
 
 class BadgesListItem extends React.Component {
   render() {
@@ -10,10 +7,10 @@ class BadgesListItem extends React.Component {
     return (
       <div className='all-isotope-item col-md-3 col-sm-12'>
         <div className='thumb'>
-          <a className='gallery-fancybox' href='#'>
-            <img style={{ height: '24rem' }} variant='top' src={badge.avatarURL} alt='image' />
+          <a className='gallery-fancybox' href='/'>
+            <img style={{ height: '24rem' }} variant='top' src={badge.avatarURL} alt='avatar' />
           </a>
-          <a className='btn btn-white' href='#'>Live Preview</a>
+          <a className='btn btn-white' href='/'>Live Preview</a>
         </div>
         <div className='item-details'>
           <span className='price'>

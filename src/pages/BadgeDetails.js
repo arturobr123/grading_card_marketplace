@@ -12,7 +12,6 @@ function BadgeDetails(props) {
 
   console.log(badge);
 
-
   return (
     <div>
       <PageHeader headertitle='Products Details' subheader='pages' />

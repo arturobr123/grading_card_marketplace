@@ -1,4 +1,4 @@
-import firebase, { auth, provider } from '../firebaseInitializeApp.js';
+import firebase, { auth, provider } from '../firebaseInitializeApp';
 
 export function getUser() {
   auth.onAuthStateChanged((user) => {

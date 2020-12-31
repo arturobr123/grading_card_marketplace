@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './styles/Navbar.css';
-import geekLogo from '../images/geek_icon.png';
 
 import { getUser, logout } from '../actions/userActions';
 
@@ -27,8 +26,6 @@ class Navbar extends React.Component {
     const { user } = this.state;
 
     const publicUrl = `${process.env.PUBLIC_URL}/`;
-    const imgattr = 'logo';
-    const anchor = '#';
     return (
       <div>
         <div className='dkt-sitebar-menu'>
@@ -40,39 +37,6 @@ class Navbar extends React.Component {
                   <h3>Card MarketPlace</h3>
                   {' '}
                 </Link>
-              </div>
-              <p className='details'>Donsectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua. </p>
-              <div className='address-inner'>
-                <h5>Address</h5>
-                <p>3538 Cambridge Place Laurel, MD 20707</p>
-              </div>
-              <div className='address-inner'>
-                <h5>Phone</h5>
-                <p>410-565-2575</p>
-              </div>
-              <div className='address-inner mb-0'>
-                <h5>Email</h5>
-                <p>JohnPMills@dmarket.com</p>
-              </div>
-            </div>
-            <div className='dkt-market-earn'>
-              <div className='address-inner'>
-                <h5>Market Earning</h5>
-                <p>online store with lots of digital product and exclusive Item</p>
-              </div>
-              <div className='row'>
-                <div className='col-lg-6'>
-                  <div className='earn-inner'>
-                    <p>Item Sold</p>
-                    <h5>12501</h5>
-                  </div>
-                </div>
-                <div className='col-lg-6'>
-                  <div className='earn-inner'>
-                    <p>Total Earning</p>
-                    <h5>25804</h5>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -89,9 +53,6 @@ class Navbar extends React.Component {
               <div className='logo'>
                 <Link className='main-logo' to='/badges'><h3>Card MarketPlace</h3></Link>
               </div>
-              <div className='nav-right-part nav-right-part-mobile'>
-                <a className='btn btn-base' href='#'>Sign in</a>
-              </div>
               <div className='collapse navbar-collapse' id='dkt_main_menu'>
                 <ul className='navbar-nav menu-open'>
                   <li>
@@ -104,11 +65,10 @@ class Navbar extends React.Component {
               <div className='nav-right-part nav-right-part-desktop'>
                 <ul>
                   <li>
-                    <a href='#'>
+                    <Link to='/'>
                       <img src={`${publicUrl}assets/img/icon/2m.png`} alt='icon' />
                       0 Items
-                    </a>
-
+                    </Link>
                   </li>
                   <li>
                     {

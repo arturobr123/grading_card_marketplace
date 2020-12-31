@@ -1,9 +1,10 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import firebase from 'firebase';
 import DeleteBadgeModal from './DeleteBadgeModal';
 
-import PageLoading from './PageLoading';
+//import PageLoading from './PageLoading';
 import { db } from '../firebaseDB';
 import { handleChange } from '../actions/BadgeActions';
 import { setUserToForm, setUserToState } from '../actions/userActions';
@@ -35,43 +36,42 @@ class ProductDetails extends React.Component {
 
   handleSubmitComment = async (e) => {
     console.log('handleSubmitComment');
+    const { form } = this.state;
+    const { badge } = this.props;
+
     e.preventDefault();
     this.setState({ loading: true, error: null });
 
     try {
-      this.setState({ form: { ...this.state.form, timestamp: firebase.firestore.FieldValue.serverTimestamp() } });
-      db.collection('cards').doc(this.props.badge.id).collection('comments').add(this.state.form);
+      this.setState({ form: { ...form, timestamp: firebase.firestore.FieldValue.serverTimestamp() } });
+      db.collection('cards').doc(badge.id).collection('comments').add(form);
 
       this.setState({ loading: false });
     } catch (error) {
       console.log(error);
       this.setState({ loading: false, error });
-
-      console.log(this.props.error);
     }
   };
 
   render() {
     const { badge, onOpenModal, modalIsOpen, onCloseModal, onDeleteBadge } = this.props;
-
     const comments = badge.comments ? badge.comments : [];
-
-    console.log('DATA');
-    console.log(badge);
+    const { form, loading, error, user_uid } = this.state;
 
     return (
       <section className='product-details pd-top-100'>
         <div className='container'>
           <div className='row'>
             <div className='col-lg-8'>
+              {/* PRODUCT NAME AND IMAGE */}
               <div className='single-product-wrap'>
                 <div className='thumb'>
-                  <img src={badge.avatarURL} alt='image' />
-                  <a className='btn btn-white' href='#'>Live Preview</a>
-                  <a className='btn btn-white btn-buy' href='#'>Buy Now</a>
+                  <img src={badge.avatarURL} alt='avatar' />
+                  <Link className='btn btn-white' to='/'>Live Preview</Link>
+                  <Link className='btn btn-white btn-buy' to='/'>Buy Now</Link>
                 </div>
                 <div className='single-product-details'>
-                  <h4><a href='#'>{badge.cardName}</a></h4>
+                  <h4>{badge.cardName}</h4>
                   <p>
                     Saga:
                     {' '}
@@ -79,6 +79,8 @@ class ProductDetails extends React.Component {
                   </p>
                 </div>
               </div>
+
+              {/* DESCRIPTION AND COMMENTS */}
               <div className='product-tab'>
                 <ul className='nav nav-pills'>
                   <li className='nav-item'>
@@ -147,22 +149,22 @@ class ProductDetails extends React.Component {
                               className='form-control'
                               type='text'
                               name='comment'
-                              value={this.state.form.comment}
+                              value={form.comment}
                             />
                           </div>
                         </div>
 
                         <p>Click 2 times to work correctly (fix)</p>
-                        <button className='btn btn-primary'>
+                        <button type='submit' className='btn btn-primary'>
                           Save
                         </button>
 
-                        {this.state.loading && (
+                        {loading && (
                           <p>LOADING...</p>
                         )}
 
-                        {this.state.error && (
-                          <p className=''>{this.state.error.message}</p>
+                        {error && (
+                          <p className=''>{error.message}</p>
                         )}
                       </form>
                     </div>
@@ -170,6 +172,8 @@ class ProductDetails extends React.Component {
                 </div>
               </div>
             </div>
+
+            {/* PRICE , ADD TO CART, VIEWS */}
             <div className='col-lg-4'>
               <div className='sidebar-area'>
                 <div className='widget widget-cart'>
@@ -199,12 +203,12 @@ class ProductDetails extends React.Component {
                         125 Views
                       </li>
                     </ul>
-                    <a className='btn btn-base' href='#'>Add to cart</a>
+                    <Link className='btn btn-base' to='/'>Add to Cart</Link>
                   </div>
                 </div>
                 <div className='widget widget-client text-center'>
                   {/* IF USER BELONGS THIS CARD, CAN UPDATE/DELETE THE CARD */}
-                  {this.state.user_uid === badge.user_uid && (
+                  {user_uid === badge.user_uid && (
                     <div className='col'>
                       <h2>Actions</h2>
                       <div>
@@ -218,7 +222,7 @@ class ProductDetails extends React.Component {
                         </div>
 
                         <div>
-                          <button onClick={onOpenModal} className='btn btn-danger'>
+                          <button type='button' onClick={onOpenModal} className='btn btn-danger'>
                             Delete
                           </button>
                           <DeleteBadgeModal

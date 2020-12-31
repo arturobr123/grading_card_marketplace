@@ -1,14 +1,13 @@
 import React from 'react';
 import firebase from 'firebase';
 import './styles/BadgeNew.css';
-import header from '../images/platziconf-logo.svg';
 import Badge from '../components/Badge';
 import BadgeForm from '../components/BadgeForm';
 import PageLoading from '../components/PageLoading';
 
 import api from '../api';
 import { db } from '../firebaseDB';
-import { badgeObject } from '../actions/index' ;
+import { cardObject } from '../actions/index' ;
 import { handleChangeImage, handleChange, submitImage } from '../actions/BadgeActions';
 import { setUserToForm } from '../actions/userActions';
 
@@ -16,7 +15,7 @@ class BadgeNew extends React.Component {
   state = {
     loading: false,
     error: null,
-    form: badgeObject,
+    form: cardObject,
     previewPhoto: '',
   };
 
